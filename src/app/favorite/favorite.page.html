@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Favorite</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Favorite Note!</ion-card-title>
+    </ion-card-header>
+
+    <ion-item *ngFor="let dot of notes;">
+      <ion-icon name="heart-circle-outline" slot="start"></ion-icon>
+      <ion-label>{{dot.getJudul()}}</ion-label>
+      <ion-button fill="outline" slot="end" (click)="goToDetail(dot.getJudul())">Detail</ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>

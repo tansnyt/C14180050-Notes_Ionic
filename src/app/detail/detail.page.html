@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>
+        <p id="tanggal"></p>
+      </ion-card-subtitle>
+      <ion-card-title>
+        <p id="judul">{{ judul }}</p>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-item>
+      <ion-label>
+        <p id="isi"></p>
+      </ion-label>
+
+      <ng-template *ngIf="fav; then fav0; else fav1;"></ng-template>
+      <ng-template #fav1>
+        <ion-button slot="end" id="btnFav" (click)="addToFav()">Add to Favorite</ion-button>
+      </ng-template>
+      <ng-template #fav0>
+        <ion-button slot="end" id="btnFav" (click)="addToFav()">Remove from Favorite</ion-button>
+      </ng-template>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

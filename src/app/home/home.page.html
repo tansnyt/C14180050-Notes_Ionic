@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Note
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,8 +13,52 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <br>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Input New Note</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Judul</ion-label>
+        <ion-input type="text" [(ngModel)]="judul"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Isi</ion-label>
+        <ion-input type="text" [(ngModel)]="isi"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Select Date</ion-label>
+        <ion-datetime displayFormat="DD MM YY" [(ngModel)]="tanggal"></ion-datetime>
+      </ion-item>
+      <br>
+      <ion-button (click)="inputNote()">Add</ion-button>
+      <ion-button routerLink="/favorite">See Favorite</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <router-outlet></router-outlet>
+
+  <br>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>List of Note</ion-card-title>
+    </ion-card-header>
+
+    <ion-item *ngFor="let dot of notes;">
+      <ng-template *ngIf="dot.getFav(); then fav0; else fav1;"></ng-template>
+      <ng-template #fav1>
+        <ion-icon name="heart-dislike-circle-outline" slot="start"></ion-icon>
+      </ng-template>
+      <ng-template #fav0>
+        <ion-icon name="heart-circle-outline" slot="start"></ion-icon>
+      </ng-template>
+
+      <ion-label>{{dot.getJudul()}}</ion-label>
+      <ion-button fill="outline" slot="end" (click)="goToDetail(dot.getJudul())">Detail</ion-button>
+    </ion-item>
+  </ion-card>
+
 </ion-content>
